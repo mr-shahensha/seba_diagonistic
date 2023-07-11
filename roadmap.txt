@@ -1,0 +1,6 @@
+
+medicine : sl , med_id , med_name , price1, price2
+doctor table : sl , doc_id,doc_name 
+
+bill : sl , doc_id ,cust_name, bill_no, date, total
+bill_dtls: sl,bill_no,med_id,qunt,total
