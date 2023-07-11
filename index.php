@@ -7,8 +7,9 @@ $bill_num=str_shuffle("seba123456789");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+    
     <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body style="background-color:gray; color:black">
     <h1>Seba diagonistic centre</h1>
@@ -24,15 +25,15 @@ $bill_num=str_shuffle("seba123456789");
     <form action="" method="post">
         <table border="2">
             <tr>
-                <td>bill no :<input type="text" readonly value="<?php echo $bill_num ?>"></td>
+                <td>bill no :<input type="text" readonly value="<?php echo $bill_num ?>" id="billno"></td>
                 <td>customer name :<input type="text" placeholder=" enter customer name" name="customer_name"></td>
-                <td>doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name"></td>
+                <td colspan="2">doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name"></td>
             </tr>
             <tr>
-                <td>medicine name : <select name="" id="" onchange="fun(this.value)">
+                <td >medicine name : <select name="" id="med" onchange="fun(this.value)">
                     <option value="">medicine name</option>
                     <?php 
-                    $query=mysqli_query($con,"select * from medicine");
+                    $query=mysqli_query($con,"select * from medicine"); 
                     while($result=mysqli_fetch_assoc($query)){
                         $medicine_id=$result['medicine_id'];
                         $medicine_name=$result['medicine_name'];
@@ -43,26 +44,54 @@ $bill_num=str_shuffle("seba123456789");
                     ?>
                 </select>
                 </td>
-                <td>
-                    <div id="check">
-                        Number of medicines
-                    </div>
+                <td colspan="2">
+              <div id="check">     Number of medicines :   </div>
+                   
+                </td>
+               
+            </tr>
+            <tr>
+            <td>
+                    quantity : <input type="text" value="" id="quantity" onkeyup="quan(this.value)">
                 </td>
                 <td>
-                    quantity : <input type="text" readonly value="">
+                    total price  :  <div id="totalp">000</div> 
+                </td>
+                <td>
+                 <button onclick="cart()">cart</button>
                 </td>
             </tr>
             <tr>
-                <td>
-                    total price  : <input type="text">
-                </td>
-                <td colspan="2" style="align-intems:center; text-align:center;"><input type="submit" value="submit" name="submit"></td></tr>
+                
+                <td colspan="4" style="align-intems:center; text-align:center;"><input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;"></td></tr>
         </table>
     </form>
+             <br>
+             <div id="cart_table">
+                        no data to preview
+             </div>
+             
 </body>
 </html>
 <script>
-    function fun(check_value){
-        $('#check').load('getcheck.php?check_value'+check_value).fadeIn('fast');
+    function fun(a){
+        $('#check').load('getcheck.php?a='+a).fadeIn('fast');
+        }
+        function quan(a){
+            var  aprice=parseInt(document.getElementById("aprice").value);
+            var newa=parseInt(a);
+            let newprice=newa*aprice;
+            $('#totalp').load('totalp.php?newprice=' + newprice, function() {
+                $(this).fadeIn('fast');
+            });
+        }
+    function cart(){
+        var bill=document.getElementById('billno').value;
+        // var med_nm=document.getElementById('med').value;
+        // var aprice=document.getElementById('aprice').value;
+        // var quantity=document.getElementById('quantity').value;
+        // var newprice=document.getElementById('newprice').value;
+        alert(bill)
+        $('#cart_table').load('cart.php?bill=' + bill).fadeIn('fast');
 }
 </script>

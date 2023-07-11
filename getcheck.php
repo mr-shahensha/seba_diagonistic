@@ -1,10 +1,18 @@
 <?php
-$check_value=$_REQUEST['check_value']
+include("connection.php");
+$check_value=$_REQUEST['a'];
+$query=mysqli_query($con,"select single_price,price from medicine where medicine_id='$check_value'");
+while($result=mysqli_fetch_assoc($query)){
+    $sp=$result['single_price'];
+    $p=$result['price'];
+}
 
 ?>
-<!-- <input type="radio" id="html" name="fav_language" value="HTML">
-<label for="html">single | </label><br>
-<input type="radio" id="css" name="fav_language" value="CSS">
-<label for="css">all | </label><br> -->
+<select name="" id="aprice">
+    <option value="">quantity</option>
+    <option value="<?php echo $sp; ?>">single price : <?php echo $sp; ?></option>
+    <option value="<?php echo $p; ?>">all price : <?php echo $p; ?></option>
 
-<h1><?php echo $check_value; ?></h1>
+</select>
+
+
