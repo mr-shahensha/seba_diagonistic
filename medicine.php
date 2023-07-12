@@ -13,7 +13,6 @@ include("connection.php");
 <table border="2">
         <tr>
             <td><a href="index.php">home</a></td>
-            <td><a href="doctor.php">doctor</a></td>
             <td><a href="medicine.php">medicine</a></td>
         </tr>
    </table>

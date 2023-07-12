@@ -17,21 +17,20 @@ $bill_num=str_shuffle("seba123456789");
     <table border="2">
         <tr>
         <td><a href="index.php">home</a></td>
-            <td><a href="doctor.php">doctor</a></td>
-            <td><a href="medicine.php">medicine</a></td>
+        <td><a href="medicine.php">medicine</a></td>
         </tr>
    </table>
    <br>
-    <form action="" method="post">
+    <form action="post.php" method="post">
         <table border="2">
             <tr>
-                <td>bill no :<input type="text" readonly value="<?php echo $bill_num ?>" id="billno"></td>
+                <td>bill no :<input type="text" readonly value="<?php echo $bill_num ?>" name="bill_no" id="billno"></td>
                 <td>customer name :<input type="text" placeholder=" enter customer name" name="customer_name"></td>
                 <td colspan="2">doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name"></td>
             </tr>
             <tr>
                 <td >medicine name : <select name="" id="med" onchange="fun(this.value)">
-                    <option value="">medicine name</option>
+                    <option value="">select</option>
                     <?php 
                     $query=mysqli_query($con,"select * from medicine"); 
                     while($result=mysqli_fetch_assoc($query)){
@@ -45,14 +44,16 @@ $bill_num=str_shuffle("seba123456789");
                 </select>
                 </td>
                 <td colspan="2">
-              <div id="check">     Number of medicines :   </div>
+                 Number of medicines : <div id="check">  <select name="" id="">
+                    <option value="">quantity</option>
+                 </select>  </div>
                    
                 </td>
                
             </tr>
             <tr>
             <td>
-                    quantity : <input type="text" value="" id="quantity" onkeyup="quan(this.value)">
+                    quantity : <input type="text" value="" placeholder="enter quanity" id="quantity" onkeyup="quan(this.value)">
                 </td>
                 <td>
                     total price  :  <div id="totalp">000</div> 
@@ -61,16 +62,13 @@ $bill_num=str_shuffle("seba123456789");
                  <button onclick="cart()" type="button" name="b1" id="b1" >cart</button>
                 </td>
             </tr>
-            <tr>
-                
-                <td colspan="4" style="align-intems:center; text-align:center;"><input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;"></td></tr>
         </table>
-    </form>
-             <br>
              <div id="cart_table">
                         no data to preview
              </div>
-             
+             <input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;">
+
+       </form>      
 </body>
 </html>
 <script>
@@ -87,9 +85,6 @@ $bill_num=str_shuffle("seba123456789");
             });
 			
         }
-		
-	</script>
-<script>
 	
     function cart(){
         var bill=document.getElementById('billno').value;
@@ -98,6 +93,13 @@ $bill_num=str_shuffle("seba123456789");
         var quantity=document.getElementById('quantity').value;
         var newprice=document.getElementById('newprice').value;
 
- $('#cart_table').load('cart.php?bill=' + bill+'&med_nm='+med_nm+'&aprice='+aprice+'&quantity='+quantity+'&newprice='+newprice).fadeIn('fast');
+        $('#cart_table').load('cart.php?bill=' + bill+'&med_nm='+med_nm+'&aprice='+aprice+'&quantity='+quantity+'&newprice='+newprice).fadeIn('fast');
+
+        $('#check').load('getcheck.php?a=').fadeIn('fast');
+        document.getElementById('quantity').value="";
+        document.getElementById('med').value="";
+        $('#totalp').load('totalp.php?newprice=', function() {
+                        $(this).fadeIn('fast');
+                    });
 }
 </script>
