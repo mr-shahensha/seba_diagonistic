@@ -1,11 +1,16 @@
 <?php
 include("connection.php");
-$bill_nm=$_REQUEST['bill_nm'];
+$bill_nm=$_REQUEST['bill'];
+$med_nm=$_REQUEST['med_nm'];
+$aprice=$_REQUEST['aprice'];
+$quantity=$_REQUEST['quantity'];
+$newprice=$_REQUEST['newprice'];
 
 
 ?>
-<h1><?php echo $bill_nm;?></h1>
-<!-- <table border="2">
+
+
+ <table border="2">
                 <tr >
                     <td colspan="3" style="background-color:white;color:blue;">
                         cart preview
@@ -15,7 +20,7 @@ $bill_nm=$_REQUEST['bill_nm'];
                     <td>
                         bill number
                     </td>
-                    <td colspan="2">111</td>
+                    <td colspan="2"><?php echo $bill_nm;?></td>
                 </tr>
                 <tr>
                     <td>medicine name</td>
@@ -33,4 +38,4 @@ $bill_nm=$_REQUEST['bill_nm'];
                     </td>
                     <td colspan="3">***</td>
                 </tr>
-             </table> -->
+             </table> 

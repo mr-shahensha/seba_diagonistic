@@ -58,7 +58,7 @@ $bill_num=str_shuffle("seba123456789");
                     total price  :  <div id="totalp">000</div> 
                 </td>
                 <td>
-                 <button onclick="cart()">cart</button>
+                 <button onclick="cart()" type="button" name="b1" id="b1" >cart</button>
                 </td>
             </tr>
             <tr>
@@ -77,21 +77,27 @@ $bill_num=str_shuffle("seba123456789");
     function fun(a){
         $('#check').load('getcheck.php?a='+a).fadeIn('fast');
         }
-        function quan(a){
+		
+       function quan(a){
             var  aprice=parseInt(document.getElementById("aprice").value);
             var newa=parseInt(a);
-            let newprice=newa*aprice;
+            var newprice=newa*aprice;
             $('#totalp').load('totalp.php?newprice=' + newprice, function() {
                 $(this).fadeIn('fast');
             });
+			
         }
+		
+	</script>
+<script>
+	
     function cart(){
         var bill=document.getElementById('billno').value;
-        // var med_nm=document.getElementById('med').value;
-        // var aprice=document.getElementById('aprice').value;
-        // var quantity=document.getElementById('quantity').value;
-        // var newprice=document.getElementById('newprice').value;
-        alert(bill)
-        $('#cart_table').load('cart.php?bill=' + bill).fadeIn('fast');
+        var med_nm=document.getElementById('med').value;
+        var aprice=document.getElementById('aprice').value;
+        var quantity=document.getElementById('quantity').value;
+        var newprice=document.getElementById('newprice').value;
+
+ $('#cart_table').load('cart.php?bill=' + bill+'&med_nm='+med_nm+'&aprice='+aprice+'&quantity='+quantity+'&newprice='+newprice).fadeIn('fast');
 }
 </script>

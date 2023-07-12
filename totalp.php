@@ -3,4 +3,4 @@ include("connection.php");
 $newprice=$_REQUEST['newprice'];
 
 ?>
-<p id="newprice"><?php echo $newprice;?></p>
+ <input type="text" id="newprice" name="newprice" value="<?php echo $newprice;?>" readonly>
