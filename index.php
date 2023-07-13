@@ -1,6 +1,8 @@
 <?php
 include("connection.php");
-$bill_num=str_shuffle("seba123456789");
+include("back.php");
+$uname=$_SESSION['user_name'];
+// $bill_num=str_shuffle("seba123456789");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,18 +15,20 @@ $bill_num=str_shuffle("seba123456789");
 </head>
 <body style="background-color:gray; color:black">
     <h1>Seba diagonistic centre</h1>
+    
     <br>
     <table border="2">
         <tr>
         <td><a href="index.php">home</a></td>
         <td><a href="medicine.php">medicine</a></td>
+        <td><a href="logout.php">logout</a></td>
         </tr>
    </table>
    <br>
     <form action="post.php" method="post">
+        <input type="text" readonly name="sname" id="sname_id" value="<?php echo $uname;?>">
         <table border="2">
             <tr>
-                <td>bill no :<input type="text" readonly value="<?php echo $bill_num ?>" name="bill_no" id="billno"></td>
                 <td>customer name :<input type="text" placeholder=" enter customer name" name="customer_name"></td>
                 <td colspan="2">doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name"></td>
             </tr>
@@ -87,13 +91,14 @@ $bill_num=str_shuffle("seba123456789");
         }
 	
     function cart(){
-        var bill=document.getElementById('billno').value;
+        var bill=0;
+        var sname_id=document.getElementById('sname_id').value;
         var med_nm=document.getElementById('med').value;
         var aprice=document.getElementById('aprice').value;
         var quantity=document.getElementById('quantity').value;
         var newprice=document.getElementById('newprice').value;
 
-        $('#cart_table').load('cart.php?bill=' + bill+'&med_nm='+med_nm+'&aprice='+aprice+'&quantity='+quantity+'&newprice='+newprice).fadeIn('fast');
+        $('#cart_table').load('cart.php?bill=' + bill+'&med_nm='+med_nm+'&aprice='+aprice+'&quantity='+quantity+'&newprice='+newprice+'&sname_id='+sname_id).fadeIn('fast');
 
         $('#check').load('getcheck.php?a=').fadeIn('fast');
         document.getElementById('quantity').value="";

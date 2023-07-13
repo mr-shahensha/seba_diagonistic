@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+session_Start();
+$uname=$_SESSION['user_name'];
 if(isset($_POST['submit'])){
     $billno=$_REQUEST['billno'];
     $cust_name=$_REQUEST['cust_name'];
@@ -8,6 +10,8 @@ if(isset($_POST['submit'])){
     date_default_timezone_set("asia/kolkata");
     $datetime = date('d/m/Y h:i:s a', time());
     $query=mysqli_query($con,"INSERT INTO `bill` (`sl`, `bill_no`, `doctor_id`, `customer_name`, `date`, `total_price`) VALUES (NULL, '$billno', '$doctor_name', '$cust_name', '$datetime', '$amount');");
+    $query1=mysqli_query($con,"UPDATE `bill_details` SET `bill_no` = '$billno' WHERE `bill_details`.`admin_id` = '$uname' and `bill_no`='0'; ");
+
 }
 ?>
 

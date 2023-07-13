@@ -1,10 +1,12 @@
 <?php
 include("connection.php");
 if(isset($_POST['submit'])){
-    $billno=$_REQUEST['bill_no'];
     $customer_name=$_REQUEST['customer_name'];
     $doctor_name=$_REQUEST['doctor_name'];
-
+//include("back.php");
+session_Start();
+$uname=$_SESSION['user_name'];
+// $bill_num=str_shuffle("seba123456789");
 }
 ?>
 <form action="gopost.php" method="post">
@@ -14,7 +16,13 @@ if(isset($_POST['submit'])){
     </tr>
     <tr>
         <td><b>bill no : </b> </td>
-        <td colspan="3"><input type="text" value="<?php echo $billno;?>" readonly name="billno">
+        <td colspan="3"><input type="text" value="<?php 
+        $f=0;
+        $query3=mysqli_query($con,"select bill_no from bill");
+        while($result3=mysqli_fetch_assoc($query3)){
+            $f++;
+        }
+        echo "seba".$f;?>" readonly name="billno">
         </td>
     </tr>
     <tr>
@@ -34,7 +42,7 @@ if(isset($_POST['submit'])){
         <td><b>total price </b> </td>
     </tr>
     <?php
-        $query=mysqli_query($con,"SELECT * FROM `bill_details` where bill_no='$billno'");
+        $query=mysqli_query($con,"SELECT * FROM `bill_details` where admin_id='$uname' and bill_no='0'");
         $amount=0;
         while($result=mysqli_fetch_assoc($query)){
             $medicine_id=$result['medicine_id'];

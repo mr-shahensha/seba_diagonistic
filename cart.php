@@ -1,12 +1,13 @@
 <?php
 include("connection.php");
 $bill_nm=$_REQUEST['bill'];
+$sname_id=$_REQUEST['sname_id'];
 $med_id=$_REQUEST['med_nm'];
 $aprice=$_REQUEST['aprice'];
 $quantity=$_REQUEST['quantity'];
 $newprice=$_REQUEST['newprice'];
-
-$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`) VALUES (NULL, '$bill_nm', '$med_id', '$aprice', '$quantity','$newprice');");
+$sname=$_REQUEST['sname'];
+$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`,`admin_id`) VALUES (NULL, '0', '$med_id', '$aprice', '$quantity','$newprice','$sname_id');");
 
 ?>
 
@@ -16,12 +17,6 @@ $query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine
                     <td colspan="4" style="background-color:white;color:blue;">
                         cart preview
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        bill number
-                    </td>
-                    <td colspan="3"><?php echo $bill_nm;?></td>
                 </tr>
                 <tr>
                     <td>medicine name</td>

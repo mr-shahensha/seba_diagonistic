@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2023 at 11:42 AM
+-- Generation Time: Jul 13, 2023 at 02:15 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -29,12 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bill` (
   `sl` int(11) NOT NULL,
+  `bill_no` varchar(255) NOT NULL,
   `doctor_id` varchar(255) NOT NULL,
   `customer_name` varchar(255) NOT NULL,
-  `bill_no` varchar(255) NOT NULL,
   `date` varchar(255) NOT NULL,
   `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`sl`, `bill_no`, `doctor_id`, `customer_name`, `date`, `total_price`) VALUES
+(1, 'seba0', 'aman gupta', 'rakesh', '13/07/2023 05:41:53 pm', 14),
+(2, 'seba1', 'john milon', 'rima', '13/07/2023 05:42:19 pm', 30);
 
 -- --------------------------------------------------------
 
@@ -46,28 +54,41 @@ CREATE TABLE `bill_details` (
   `sl` int(11) NOT NULL,
   `bill_no` varchar(255) NOT NULL,
   `medicine_id` varchar(255) NOT NULL,
+  `per_p` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `total_price` int(11) NOT NULL
+  `total_price` int(11) NOT NULL,
+  `admin_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bill_details`
+--
+
+INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`, `per_p`, `quantity`, `total_price`, `admin_id`) VALUES
+(1, 'seba0', 'med0', 10, 1, 10, 'admin2'),
+(2, 'seba0', 'med0', 2, 2, 4, 'admin2'),
+(3, 'seba1', 'med1', 10, 3, 30, 'admin2');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `doctor`
+-- Table structure for table `login`
 --
 
-CREATE TABLE `doctor` (
+CREATE TABLE `login` (
   `sl` int(11) NOT NULL,
-  `doctor_id` int(11) NOT NULL,
-  `doctor_name` varchar(255) NOT NULL
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `action` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `doctor`
+-- Dumping data for table `login`
 --
 
-INSERT INTO `doctor` (`sl`, `doctor_id`, `doctor_name`) VALUES
-(1, 0, 'rakesh');
+INSERT INTO `login` (`sl`, `user_name`, `password`, `action`) VALUES
+(1, 'admin1', 'admin1', 0),
+(2, 'admin2', 'admin2', 0);
 
 -- --------------------------------------------------------
 
@@ -88,7 +109,8 @@ CREATE TABLE `medicine` (
 --
 
 INSERT INTO `medicine` (`sl`, `medicine_id`, `medicine_name`, `single_price`, `price`) VALUES
-(1, 'med0', 'peracitamol', 2, 20);
+(1, 'med0', 'paracetamol', 2, 10),
+(2, 'med1', 'boroline', 10, 15);
 
 --
 -- Indexes for dumped tables
@@ -107,9 +129,9 @@ ALTER TABLE `bill_details`
   ADD PRIMARY KEY (`sl`);
 
 --
--- Indexes for table `doctor`
+-- Indexes for table `login`
 --
-ALTER TABLE `doctor`
+ALTER TABLE `login`
   ADD PRIMARY KEY (`sl`);
 
 --
@@ -126,25 +148,25 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bill_details`
 --
 ALTER TABLE `bill_details`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `doctor`
+-- AUTO_INCREMENT for table `login`
 --
-ALTER TABLE `doctor`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `login`
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
