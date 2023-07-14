@@ -31,7 +31,7 @@ include("connection.php");
     </tr>
     </table>
             <br>
-            <div class="search">
+            <div id="search">
                 serch result
             </div>
 </body>
@@ -44,7 +44,7 @@ include("connection.php");
         if(date1==""){
             alert("select a date")
         }
-        alert(admin)
-        $('#search').load('getdwsd.php?date1=' + date1+'&date2='+date2+'&admin='+admin).fadeIn('fast');
+     
+        $('#search').load('getdwsd.php?date1='+date1+'&date2='+date2+'&admin='+admin).fadeIn('fast');
     }
 </script>
