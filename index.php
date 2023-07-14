@@ -12,9 +12,12 @@ $uname=$_SESSION['user_name'];
     
     <title>Document</title>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <link rel="stylesheet" href="css/index.css">
 </head>
 <body style="background-color:gray; color:black">
-    <h1>Seba diagonistic centre</h1>
+    <header>
+        <h1>Seba diagonistic centre</h1>
+    </header>
     
     <br>
     <table border="2">
