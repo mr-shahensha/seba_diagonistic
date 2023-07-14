@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2023 at 02:15 PM
+-- Generation Time: Jul 14, 2023 at 12:50 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -32,17 +32,18 @@ CREATE TABLE `bill` (
   `bill_no` varchar(255) NOT NULL,
   `doctor_id` varchar(255) NOT NULL,
   `customer_name` varchar(255) NOT NULL,
-  `date` varchar(255) NOT NULL,
-  `total_price` int(11) NOT NULL
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `total_price` int(11) NOT NULL,
+  `entre_by` varchar(255) NOT NULL,
+  `entry_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bill`
 --
 
-INSERT INTO `bill` (`sl`, `bill_no`, `doctor_id`, `customer_name`, `date`, `total_price`) VALUES
-(1, 'seba0', 'aman gupta', 'rakesh', '13/07/2023 05:41:53 pm', 14),
-(2, 'seba1', 'john milon', 'rima', '13/07/2023 05:42:19 pm', 30);
+INSERT INTO `bill` (`sl`, `bill_no`, `doctor_id`, `customer_name`, `date`, `total_price`, `entre_by`, `entry_date`) VALUES
+(1, 's2307000', ' aman gupta', 'rakesh', '2023-07-14', 38, 'admin1', '14/07/2023 03:24:26 pm');
 
 -- --------------------------------------------------------
 
@@ -57,17 +58,17 @@ CREATE TABLE `bill_details` (
   `per_p` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
-  `admin_id` varchar(255) NOT NULL
+  `entry_by` varchar(255) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bill_details`
 --
 
-INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`, `per_p`, `quantity`, `total_price`, `admin_id`) VALUES
-(1, 'seba0', 'med0', 10, 1, 10, 'admin2'),
-(2, 'seba0', 'med0', 2, 2, 4, 'admin2'),
-(3, 'seba1', 'med1', 10, 3, 30, 'admin2');
+INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`, `per_p`, `quantity`, `total_price`, `entry_by`, `date`) VALUES
+(1, 's2307000', 'med0', 2, 4, 8, 'admin1', '2023-07-14'),
+(2, 's2307000', 'med1', 15, 2, 30, 'admin1', '2023-07-14');
 
 -- --------------------------------------------------------
 
@@ -148,13 +149,13 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_details`
 --
 ALTER TABLE `bill_details`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `login`
