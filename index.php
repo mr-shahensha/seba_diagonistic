@@ -24,6 +24,7 @@ $uname=$_SESSION['user_name'];
     <table border="2">
         <tr>
         <td><a href="index.php">home</a></td>
+        <td><a href="dwsd.php">day wise sale detils</a></td>
         <td><a href="medicine.php">medicine</a></td>
         <td><a href="logout.php">logout</a></td>
         </tr>
@@ -33,8 +34,8 @@ $uname=$_SESSION['user_name'];
         <input type="text" readonly name="sname" id="sname_id" value="<?php echo $uname;?>">
         <table border="2">
             <tr>
-                <td>customer name :<input type="text" placeholder=" enter customer name" name="customer_name"></td>
-                <td colspan="2">doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name"></td>
+                <td>customer name :<input type="text" placeholder=" enter customer name" name="customer_name" id="customer_id" onkeyup="hidewarn(this.value)"></td>
+                <td colspan="2">doctor name : <input type="text" placeholder=" enter customer name" name="doctor_name" id="doctor_id" onkeyup="hidewarn2(this.value)"></td>
             </tr>
             <tr>
                 <td >medicine name : <select name="" id="med" onchange="fun(this.value)">
@@ -67,19 +68,21 @@ $uname=$_SESSION['user_name'];
                     total price  :  <div id="totalp">000</div> 
                 </td>
                 <td>
-                 <button onclick="cart()" type="button" name="b1" id="b1" >cart</button>
+                 <button onclick="return validation()" type="button" name="b1" id="b1" >cart</button>
                 </td>
             </tr>
         </table>
+        <br>
+        <p id="warn" style="color:red;"></p>
+        <br>
              <div id="cart_table">
                         no data to preview
              </div>
-             <input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;">
-
        </form> 
 </body>
 </html>
 <script>
+
     function fun(a){
         $('#check').load('getcheck.php?a='+a).fadeIn('fast');
         }
@@ -93,7 +96,21 @@ $uname=$_SESSION['user_name'];
             });
 			
         }
-	
+        function validation(){
+            var customer_id=document.getElementById('customer_id').value;
+            var doctor_id=document.getElementById('doctor_id').value;
+            if(customer_id.length<3){
+                text="please enter customer name";
+                document.getElementById('warn').innerHTML=text;
+                return false;
+            }
+            if(doctor_id.length<3){
+                text="please enter doctor name";
+                document.getElementById('warn').innerHTML=text;
+                return false;
+            }
+            cart();
+        }
     function cart(){
         var bill=0;
         var sname_id=document.getElementById('sname_id').value;
@@ -110,5 +127,16 @@ $uname=$_SESSION['user_name'];
         $('#totalp').load('totalp.php?newprice=', function() {
                         $(this).fadeIn('fast');
                     });
-}
+        }
+
+        function hidewarn(a){
+        if(a!=''){
+            document.getElementById("warn").innerHTML = "";
+        }
+        }
+        function hidewarn2(a){
+            if(a!=''){
+            document.getElementById("warn").innerHTML = "";
+            }
+        }
 </script>

@@ -1,17 +1,29 @@
 <?php
 include("connection.php");
+session_start();
+$uname=$_SESSION['user_name'];
 $bill_nm=$_REQUEST['bill'];
 $sname_id=$_REQUEST['sname_id'];
 $med_id=$_REQUEST['med_nm'];
 $aprice=$_REQUEST['aprice'];
 $quantity=$_REQUEST['quantity'];
 $newprice=$_REQUEST['newprice'];
+$f=0;
+$query0=mysqli_query($con,"select medicine_id from bill_details where medicine_id='$med_id' and bill_no='0' and entry_by='$uname';");
+while($result0=mysqli_fetch_assoc($query0)){
+$f++;
+}
+// $count=mysqli_num_rows($query0);
 
-$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`,`entry_by`) VALUES (NULL, '0', '$med_id', '$aprice', '$quantity','$newprice','$sname_id');");
-
+if($f>0)
+{
 ?>
-
-
+<b><p style="color :white;">this medicine name is already chosen</p></b>
+<?php 
+}else{
+$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`,`entry_by`) VALUES (NULL, '0', '$med_id', '$aprice', '$quantity','$newprice','$sname_id');");
+}
+?>
  <table border="2">
                 <tr >
                     <td colspan="4" style="background-color:white;color:blue;">
@@ -50,3 +62,4 @@ $query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine
                 </tr>
                 <tr>
                  </table> 
+                 <input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;">
