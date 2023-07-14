@@ -17,12 +17,26 @@ $uname=$_SESSION['user_name'];
     <tr>
         <td><b>bill no : </b> </td>
         <td colspan="3"><input type="text" value="<?php 
-        $f=0;
-        $query3=mysqli_query($con,"select bill_no from bill");
-        while($result3=mysqli_fetch_assoc($query3)){
-            $f++;
+
+        if($i=0;$i<=998;$i++){
+            $count=strlen($i);
+            if($count==1){
+                $no= "00".$i;
+            }if($count==2){
+                $no="0".$i;
+            }
+            if($count==3){
+                $no=$i;
+            }
         }
-        echo "seba".$f;?>" readonly name="billno">
+        // $query3=mysqli_query($con,"select bill_no from bill");
+        // while($result3=mysqli_fetch_assoc($query3)){
+        //     $f++;
+        // }
+        date_default_timezone_set("asia/kolkata");
+        $year = date('y');
+        $month=date('m');
+        echo "s".$year.$month.$no;?>" readonly name="billno">
         </td>
     </tr>
     <tr>
@@ -42,7 +56,7 @@ $uname=$_SESSION['user_name'];
         <td><b>total price </b> </td>
     </tr>
     <?php
-        $query=mysqli_query($con,"SELECT * FROM `bill_details` where admin_id='$uname' and bill_no='0'");
+        $query=mysqli_query($con,"SELECT * FROM `bill_details` where entry_by='$uname' and bill_no='0'");
         $amount=0;
         while($result=mysqli_fetch_assoc($query)){
             $medicine_id=$result['medicine_id'];

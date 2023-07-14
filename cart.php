@@ -6,8 +6,8 @@ $med_id=$_REQUEST['med_nm'];
 $aprice=$_REQUEST['aprice'];
 $quantity=$_REQUEST['quantity'];
 $newprice=$_REQUEST['newprice'];
-$sname=$_REQUEST['sname'];
-$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`,`admin_id`) VALUES (NULL, '0', '$med_id', '$aprice', '$quantity','$newprice','$sname_id');");
+
+$query=mysqli_query($con,"INSERT INTO `bill_details` (`sl`, `bill_no`, `medicine_id`,`per_p`,`quantity`, `total_price`,`entry_by`) VALUES (NULL, '0', '$med_id', '$aprice', '$quantity','$newprice','$sname_id');");
 
 ?>
 

@@ -3,6 +3,7 @@ include("connection.php");
 include("back.php");
 $uname=$_SESSION['user_name'];
 // $bill_num=str_shuffle("seba123456789");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +76,7 @@ $uname=$_SESSION['user_name'];
              </div>
              <input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;">
 
-       </form>      
+       </form> 
 </body>
 </html>
 <script>
