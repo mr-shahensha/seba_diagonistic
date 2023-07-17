@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+include("back.php");
+$lvl=$_SESSION['lvl'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,14 @@ include("connection.php");
         <td><a href="index.php">home</a></td>
         <td><a href="dwsd.php">day wise sale detils</a></td>
         <td><a href="pwsd.php">product wise sale detils</a></td>
+         <!--ony visible to admin-->
+         <?php 
+        if($lvl==0){
+        ?>
         <td><a href="medicine.php">medicine</a></td>
+        <?php 
+        }
+        ?>
         <td><a href="logout.php">logout</a></td>
         </tr>
    </table>
@@ -26,9 +35,15 @@ include("connection.php");
         <td>date1 : <input type="date" name="" id="date1"></td>
         <td>date2 : <input type="date" name=""  id="date2"></td>
         <td><select name="" id="admin">
-            <option value="">all admin</option>
             <?php
+            if($lvl==0){
             $query=mysqli_query($con,"select * from login");
+            ?>
+              <option value="">all admin</option>
+            <?php
+            }else{
+                $query=mysqli_query($con,"select * from login where level='$lvl'");
+            }
             while($result=mysqli_fetch_assoc($query)){
                 $user=$result['user_name'];
                 ?>

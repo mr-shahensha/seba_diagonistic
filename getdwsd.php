@@ -30,6 +30,7 @@ else{
         
     </tr>
     <?php
+    $new_price=0;
     $query=mysqli_query($con,"select * from bill where sl>0".$q2.$q3);
     while($result=mysqli_fetch_assoc($query)){
     $bill_no=$result['bill_no'];

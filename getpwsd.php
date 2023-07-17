@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+include("back.php");
+$lvl=$_SESSION['lvl'];
 $date1=$_REQUEST['date1'];
 $date2=$_REQUEST['date2'];
 $medicine=$_REQUEST['medicine'];
@@ -32,7 +34,11 @@ if($date1!='' && $date2!='' ){
      </tr>
      <?php
      $new_price=0;
+     if($lvl==0){
      $query=mysqli_query($con,"select * from bill_details where sl>0".$q2.$q3);
+     }else{
+        $query=mysqli_query($con,"select * from bill_details where sl>0 and entry_by='user'".$q2.$q3);
+     }
      while($result=mysqli_fetch_assoc($query)){
      $bill_no=$result['bill_no'];
      $med_id=$result['medicine_id'];
