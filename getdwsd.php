@@ -21,12 +21,13 @@ else{
 ?>
 <table border="2">
     <tr>
+        <td>date</td>
         <td>bill no</td>
         <td>doctor name</td>
         <td>customer name</td>
         <td>total price</td>
         <td>entry by</td>
-        <td>date</td>
+       
         
     </tr>
     <?php
@@ -42,12 +43,12 @@ else{
     $entry_date=$result['entry_date'];
     ?>
      <tr>
+        <td><?php echo $entry_date; ?></td>
         <td><a href="bill.php?bill_no=<?php echo $bill_no; ?>"><?php echo $bill_no; ?></a></td>
         <td><?php echo $doctor_name; ?></td>
         <td><?php echo $customer_name; ?></td>
         <td><?php echo $price; ?></td>
         <td><?php echo $entry_by; ?></td>
-        <td><?php echo $entry_date; ?></td>
     </tr>
   
     <?php

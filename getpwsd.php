@@ -23,14 +23,12 @@ if($date1!='' && $date2!='' ){
  ?>
  <table border="2">
      <tr>
-         <td>bill no</td>
+         <td>date</td>
          <td>medicine name</td>
          <td>price / piece</td>
          <td>quantity</td>
          <td>total sum</td>
-         <td>entry by</td>
-         <td>date</td>
-         
+         <td>entry by</td>         
      </tr>
      <?php
      $new_price=0;
@@ -50,7 +48,7 @@ if($date1!='' && $date2!='' ){
      $entry_date=$result['entry_date'];
      ?>
       <tr>
-         <td><a href="bill.php?bill_no=<?php echo $bill_no; ?>"><?php echo $bill_no; ?></a></td>
+      <td><?php echo $entry_date; ?></td>
          <td><?php 
          $query2=mysqli_query($con,"select medicine_name from medicine  where medicine_id='$med_id'");
          while($result2=mysqli_fetch_assoc($query2)){
@@ -63,7 +61,7 @@ if($date1!='' && $date2!='' ){
          <td><?php echo $quantity; ?></td>
          <td><?php echo $price; ?></td>
          <td><?php echo $entry_by; ?></td>
-         <td><?php echo $entry_date; ?></td>
+         
      </tr>
    
      <?php
@@ -71,6 +69,6 @@ if($date1!='' && $date2!='' ){
  ?>
  <tr>
     <td>total sale : </td>
-    <td><?php echo $new_price; ?></td>
+    <td colspan="5"><?php echo $new_price; ?></td>
  </tr>
  </table>
