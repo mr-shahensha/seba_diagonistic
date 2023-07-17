@@ -35,6 +35,7 @@ if(isset($_POST['submit'])){
     while($result=mysqli_fetch_assoc($query)){
         $action=$result['action'];
         $db_password=$result['password'];
+        $lvl=$result['level'];
     }
 
 
@@ -47,6 +48,8 @@ if(isset($_POST['submit'])){
             session_start();
             session_unset();
             $_SESSION['user_name']=$uname;
+            $_SESSION['lvl']=$lvl;
+
             ?>
             <script>
                 alert("welcome !!");

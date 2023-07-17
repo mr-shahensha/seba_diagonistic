@@ -10,10 +10,13 @@ include("connection.php");
 </head>
 <body>
     <h1>medicine page</h1>
-<table border="2">
+    <table border="2">
         <tr>
-            <td><a href="index.php">home</a></td>
-            <td><a href="medicine.php">medicine</a></td>
+        <td><a href="index.php">home</a></td>
+        <td><a href="dwsd.php">day wise sale detils</a></td>
+        <td><a href="pwsd.php">product wise sale detils</a></td>
+        <td><a href="medicine.php">medicine</a></td>
+        <td><a href="logout.php">logout</a></td>
         </tr>
    </table>
    <br>

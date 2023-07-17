@@ -4,9 +4,7 @@ include("connection.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>Document</title>
 </head>
@@ -21,18 +19,19 @@ include("connection.php");
         </tr>
    </table>
    <br>
-    <table border="2">
+   <table border="2">
     <tr>
         <td>date1 : <input type="date" name="" id="date1"></td>
         <td>date2 : <input type="date" name=""  id="date2"></td>
-        <td><select name="" id="admin">
-            <option value="">all admin</option>
+        <td><select name="" id="medicine">
+            <option value="">all medicine</option>
             <?php
-            $query=mysqli_query($con,"select * from login");
+            $query=mysqli_query($con,"SELECT * FROM `medicine` ");
             while($result=mysqli_fetch_assoc($query)){
-                $user=$result['user_name'];
+                $medicine_id=$result['medicine_id'];
+                $medicine_name=$result['medicine_name'];
                 ?>
-                <option value="<?php echo $user;?>"><?php echo $user;?></option>
+                <option value="<?php echo $medicine_id;?>"><?php echo $medicine_name;?></option>
                 <?php
             }
             ?>
@@ -44,13 +43,15 @@ include("connection.php");
             <div id="search">
                 serch result
             </div>
+
+
 </body>
 </html>
 <script>
     function search(){
         var date1=document.getElementById('date1').value;
         var date2=document.getElementById('date2').value;
-        var admin=document.getElementById('admin').value;
+        var medicine=document.getElementById('medicine').value;
         if(date1==""){
             alert("select first date")
             return false;
@@ -59,8 +60,10 @@ include("connection.php");
             alert("select second date")
             return false;
         }
-        $('#search').load('getdwsd.php?date1='+date1+'&date2='+date2+'&admin='+admin).fadeIn('fast');
+        $('#search').load('getpwsd.php?date1='+date1+'&date2='+date2+'&medicine='+medicine).fadeIn('fast');
 
 
     }
 </script>
+</body>
+</html>

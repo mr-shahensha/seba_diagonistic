@@ -2,6 +2,7 @@
 include("connection.php");
 include("back.php");
 $uname=$_SESSION['user_name'];
+$lvl=$_SESSION['lvl'];
 // $bill_num=str_shuffle("seba123456789");
 
 ?>
@@ -25,7 +26,15 @@ $uname=$_SESSION['user_name'];
         <tr>
         <td><a href="index.php">home</a></td>
         <td><a href="dwsd.php">day wise sale detils</a></td>
+        <td><a href="pwsd.php">product wise sale detils</a></td>
+        <!--ony visible to admin-->
+        <?php 
+        if($lvl==0){
+        ?>
         <td><a href="medicine.php">medicine</a></td>
+        <?php 
+        }
+        ?>
         <td><a href="logout.php">logout</a></td>
         </tr>
    </table>

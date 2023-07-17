@@ -13,7 +13,7 @@
             <td><input type="text" value="" placeholder="enter your username" name="username" id="username_id"></td>
         </tr>
         <tr>
-            <td><input type="password" placeholder="enter your password" name="password" id="password_id"></td>
+            <td><input type="text" placeholder="enter your password" name="password" id="password_id"></td>
         </tr>
         <tr>
             <td><input type="submit" value="login" name="submit"></td>
