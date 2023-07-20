@@ -18,22 +18,7 @@ $uname=$_SESSION['user_name'];
         <td><b>bill no : </b> </td>
         <td colspan="3"><input type="text" value="<?php 
 
-        // for($i=0;$i<=998;$i++){
-        //     $count=strlen($i);
-        //     if($count==1){
-        //         $no= "00".$i;
-        //     }if($count==2){
-        //         $no="0".$i;
-        //     }
-        //     if($count==3){
-        //         $no=$i;
-        //     }
-        // }
-
-        //$i=0;
         $query3=mysqli_query($con,"select bill_no from bill");
-        // while($result3=mysqli_fetch_assoc($query3)){
-            //$i++;
             $i=mysqli_num_rows($query3);
             $count=strlen($i);
             if($count==1){
@@ -44,7 +29,6 @@ $uname=$_SESSION['user_name'];
             if($count==3){
                 $no=$i;
             }
-        //}
         date_default_timezone_set("asia/kolkata");
         $year = date('y');
         $month=date('m');

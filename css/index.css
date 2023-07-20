@@ -10,13 +10,9 @@ body{
     text-transform: capitalize;
 }
 ul li{
-    text-align: left;
-    margin: 0 14%;
+   
     text-transform: capitalize;
     font-size: 25px;
 }
-.dropdown{
-    position: relative;
-    left: 140%;
-}
+
 

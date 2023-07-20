@@ -1,29 +1,15 @@
 <?php
 include("connection.php");
 if(isset($_POST['submit'])){
-    $medicine_name=$_REQUEST['medicine_name'];
+    $medicine_id=$_REQUEST['medicine_id'];
     $single_price=$_REQUEST['single_price'];
     $price=$_REQUEST['price'];
-    $query=mysqli_query($con,"select * from medicine");
-    $f=0;
-    while($result=mysqli_fetch_assoc($query)){
-        $medicine=$result['medicine_name'];
-            $f++;
-    }
-    if($medicine!=$medicine_name){
-        $query1=mysqli_query($con,"INSERT INTO `medicine` (`sl`, `medicine_id`, `medicine_name`,`single_price`,`price`) VALUES (NULL, 'med$f', '$medicine_name','$single_price','$price');");
-    }else{
-        ?>
-            <script>
-                alert("this medicine already eaxist");
-                document.location="medicine.php";
-            </script>
-        <?php
-    }
+        $query1=mysqli_query($con,"update `medicine` set `single_price` ='$single_price' ,`price`='$price' where medicine_id='$medicine_id' ");
+
 }
 ?>
             <script>
-                alert(" medicine name submitted ");
+                alert(" medicine price submitted ");
                 document.location="medicine.php";
             </script>
        

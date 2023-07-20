@@ -13,48 +13,25 @@ $lvl=$_SESSION['lvl'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+  
    <link rel="stylesheet" href="css/index.css">
 </head>
 <body style="background-color:gray; color:black">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php"><img class="logo" width="50px" src="img/image.png" alt="medical logo" ></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="dwsd.php">dwsd</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="pwsd.php">pwsd</a>
-        </li>
-        <?php 
-        if($lvl==0){
-        ?>
-        <li class="nav-item">
-          <a class="nav-link" href="medicine.php">medicine</a>
-        </li>
-        <?php 
-        }
-        ?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="material-symbols-outlined">manage_accounts</span>          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="logout.php">logout</a></li>
-       
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<table border="2">
+        <tr>
+        <td><a href="index.php">home</a></td>
+        <td><a href="dwsd.php">day wise sale detils</a></td>
+        <td><a href="pwsd.php">product wise sale detils</a></td>
+        <td><a href="medicine_master.php">medicine master</a></td>
+        <td><a href="medicine.php">medicine</a></td>
+        <td><a href="purchase.php"> purchase</a></td>
+        <td><a href="logout.php">logout</a></td>
+        </tr>
+   </table>
     <form action="post.php" method="post">
         
         <table border="2">
@@ -93,6 +70,7 @@ $lvl=$_SESSION['lvl'];
                     total price  :  <div id="totalp">000</div> 
                 </td>
                 <td>
+                  <input type="hidden" name="" id="sname_id" value="<?php echo $uname;?>">
                  <button onclick="return validation()" type="button" name="b1" id="b1" >cart</button>
                 </td>
             </tr>
