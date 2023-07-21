@@ -24,14 +24,14 @@ include("connection.php");
         </tr>
    </table>
    <br>
-   <form action="sent_purchase.php" method="post"></form>
+   <form action="sent_purchase.php" method="post">
     <table border="2">
         <tr>
             <td>
                 seller name 
             </td>
         <td colspan="4">
-            <input type="text" placeholder="enter seller name" id="seller_name" style="width:410px;" onkeyup="hidewarn()">
+            <input type="text" placeholder="enter seller name" name="snm" id="seller_name" style="width:410px;" onkeyup="hidewarn()">
             </td>
         </tr>
         <tr>
@@ -63,6 +63,7 @@ include("connection.php");
     </table>
     <p id="warn" style="color:red;"></p>
     <div id="result"></div>
+    </form>
 </body>
 </html>
 <script>
@@ -78,11 +79,13 @@ include("connection.php");
         var medicine_name=document.getElementById('medicine_name').value;
         var quantity_id=document.getElementById('quantity_id').value;
         var original_price=document.getElementById('original_price').value;
+        var sum_of_purchase=document.getElementById('sum_of_purchase').value;
         if(seller_name =="" ||medicine_name =="" || quantity_id =="" || original_price ==""){
             document.getElementById('warn').innerHTML="complete all the feild";
             return false;
         }
-        $('#result').load('submit_purchase.php?seller_name='+seller_name+'&medicine_name='+medicine_name+'&quantity_id='+quantity_id+'&original_price='+original_price).fadeIn('fast');
+        $('#result').load('submit_purchase.php?medicine_name='+medicine_name+'&quantity_id='+quantity_id+'&original_price='+original_price+'&sum_of_purchase='+sum_of_purchase).fadeIn('fast');
+        
         $('#sum').load('total_sum_purchase.php?sum=000').fadeIn('fast');
        document.getElementById('medicine_name').value="";
         document.getElementById('quantity_id').value="";
