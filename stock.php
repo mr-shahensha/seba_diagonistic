@@ -31,6 +31,7 @@ include("connection.php");
 
         <td >medicine name : <select name="" id="med" onchange="fun(this.value)" onchange="fun(this.value)">
                     <option value="">select</option>
+                    <option value="0">All medicine</option>
                     <?php 
                     $query=mysqli_query($con,"select * from medicine"); 
                     while($result=mysqli_fetch_assoc($query)){
