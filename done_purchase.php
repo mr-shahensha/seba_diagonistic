@@ -29,6 +29,6 @@ while($result=mysqli_fetch_assoc($query2)){
 
 ?>
 <script>
-    //alert("purchased done");
-    //document.location="purchase.php";
+    alert("purchased done");
+    document.location="purchase.php";
 </script>

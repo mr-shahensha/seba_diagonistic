@@ -26,6 +26,7 @@ $lvl=$_SESSION['lvl'];
         <td><a href="index.php">home</a></td>
         <td><a href="dwsd.php">day wise sale detils</a></td>
         <td><a href="pwsd.php">product wise sale detils</a></td>
+        <td><a href="stock.php">stock</a></td>
         <td><a href="medicine_master.php">medicine master</a></td>
         <td><a href="medicine.php">medicine</a></td>
         <td><a href="purchase.php"> purchase</a></td>
@@ -54,6 +55,10 @@ $lvl=$_SESSION['lvl'];
                     ?>
                 </select>
                 </td>
+                <td>
+                available stock :
+                <div id="stock"></div>
+                </td>
                 <td colspan="2">
                  Number of medicines : <div id="check">  <select name="" id="">
                     <option value="">quantity</option>
@@ -78,9 +83,12 @@ $lvl=$_SESSION['lvl'];
         <br>
         <p id="warn" style="color:red;"></p>
         <br>
-             <div id="cart_table">
+        <td>
+        <div id="cart_table">
                         no data to preview
              </div>
+        </td>
+             
        </form> 
 </body>
 </html>
@@ -88,18 +96,28 @@ $lvl=$_SESSION['lvl'];
 
     function fun(a){
         $('#check').load('getcheck.php?a='+a).fadeIn('fast');
+        $('#stock').load('call_stock.php?medid='+a).fadeIn('fast');
         }
 		
        function quan(a){
+            var  nosk=parseInt(document.getElementById("nosk").value);
             var  aprice=parseInt(document.getElementById("aprice").value);
             var newa=parseInt(a);
             var newprice=newa*aprice;
+            if(a>=nosk){
+                text="this many stock is not available";
+                document.getElementById('warn').innerHTML=text;
+                return false;
+            }else{
+                document.getElementById('warn').innerHTML="";
             $('#totalp').load('totalp.php?newprice=' + newprice, function() {
                 $(this).fadeIn('fast');
             });
-			
+        }
         }
         function validation(){
+            var  nosk=parseInt(document.getElementById("nosk").value);
+            var quantity=document.getElementById('quantity').value;
             var customer_id=document.getElementById('customer_id').value;
             var doctor_id=document.getElementById('doctor_id').value;
             if(customer_id.length<3){
@@ -112,7 +130,16 @@ $lvl=$_SESSION['lvl'];
                 document.getElementById('warn').innerHTML=text;
                 return false;
             }
-            cart();
+                if(quantity>nosk){
+                    text="this many stock is not available";
+                    document.getElementById('warn').innerHTML=text;
+                    return false;
+                }else{
+                    document.getElementById('warn').innerHTML="";
+                    cart();
+                    document.getElementById('stock').innerHTML="";
+
+                }
         }
     function cart(){
         var bill=0;
@@ -130,6 +157,7 @@ $lvl=$_SESSION['lvl'];
         $('#totalp').load('totalp.php?newprice=', function() {
                         $(this).fadeIn('fast');
                     });
+
         }
 
         function hidewarn(a){

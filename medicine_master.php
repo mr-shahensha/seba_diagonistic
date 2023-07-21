@@ -11,11 +11,14 @@ include("connection.php");
     <title>Document</title>
 </head>
 <body>
+    <h1>medicine master</h1>
+    <br>
 <table border="2">
         <tr>
         <td><a href="index.php">home</a></td>
         <td><a href="dwsd.php">day wise sale detils</a></td>
         <td><a href="pwsd.php">product wise sale detils</a></td>
+        <td><a href="stock.php">stock</a></td>
         <td><a href="medicine_master.php">medicine master</a></td>
         <td><a href="medicine.php">medicine</a></td>
         <td><a href="purchase.php"> purchase</a></td>
