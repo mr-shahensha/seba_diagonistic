@@ -2,7 +2,7 @@
 include("connection.php");
 if(isset($_POST['submit'])){
 $seller_name=$_REQUEST['snm'];
-$query3=mysqli_query($con,"select bill_no from bill");
+$query3=mysqli_query($con,"select purchase_id from purchase");
 $i=mysqli_num_rows($query3);
 $count=strlen($i);
 if($count==1){

@@ -29,9 +29,9 @@ include("connection.php");
     <table border="2">
     <tr>
 
-        <td >medicine name : <select name="" id="med" onchange="fun(this.value)" onchange="fun(this.value)">
+        <td >medicine name : <select name="" id="med" onchange="fun(this.value)">
                     <option value="">select</option>
-                    <option value="0">All medicine</option>
+                    <option value="a">All medicine</option>
                     <?php 
                     $query=mysqli_query($con,"select * from medicine"); 
                     while($result=mysqli_fetch_assoc($query)){
@@ -44,13 +44,10 @@ include("connection.php");
                     ?>
                 </select>
                 </td>
-                <td>
-                available stock :
-                <div id="stock"></div>
-                </td>
         <td><button type="button" onclick="search()" style="color:blue;">search</button></td>
     </tr>
     </table>
+    <p id="warn" style="color:red;"></p>
             <br>
             <div id="search">
                 serch result
@@ -59,10 +56,19 @@ include("connection.php");
 </html>
 <script>
       function fun(a){
-        $('#stock').load('call_stock.php?medid='+a).fadeIn('fast');
+        var warn=document.getElementById('warn').value;
+        // $('#stock').load('call_stock.php?medid='+a).fadeIn('fast');
+            document.getElementById('warn').innerHTML="";
+            return false;
         }
     function search(){
+        var warn=document.getElementById('warn').value;
         var med=document.getElementById('med').value;
+        if(med==''){
+            text="select medicine name";
+            document.getElementById('warn').innerHTML=text;
+            return false;
+        }else{
         $('#search').load('getstock.php?med='+med).fadeIn('fast');
-    }
+    }}
 </script>

@@ -2,49 +2,84 @@
 include("connection.php");
 
 $med=$_REQUEST['med'];
-
-if( $med!=''){
-
+if( $med=='a'){ 
 ?>
 <table border="2">
     <tr>
         <td>sl</td>
-        <td>date</td>
-        <td>in</td>
-        <td>out</td>
+        <td>product</td>
         <td>stock</td>
     </tr>
-    <?php
-    $f=0;
-        $query=mysqli_query($con,"select * from stock where sl>0 and product_id='$med'");
-        
-        while($result=mysqli_fetch_assoc($query)){
-            $sl=$result['sl'];
-            $date=$result['date'];
-            $in=$result['in'];
-            $out=$result['out'];
-            $purchase_id=$result['purchase_id'];
-            $sale_id=$result['sale_id'];
-            
-            $f++;
-            ?>
-            <tr>
-                <td><?php echo $f; ?></td>
-                <td><?php echo $date; ?></td>
-                <td><?php echo $in; ?></td>
-                <td><?php echo $out; ?></td>
-                <td><?php
-                $sum=0;
-                    $query=mysqli_query($con,"select * from stock where sl>0 and sl='$sl'");
-                    while()
+        <?php
+        $f=0;
+            $query=mysqli_query($con,"select distinct product_id from stock");
+            while($result=mysqli_fetch_assoc($query)){
+                $product_id=$result['product_id'];
+                $f++;
+                ?>
+                <tr>
+                <td><?php echo $f;?></td>
+                <td>
                 
-                echo $sum=$in-$out;; ?></td>
-            </tr>
-            <?php
-        }
-    ?>
+                <?php
+                 $query2=mysqli_query($con,"select medicine_name from medicine where medicine_id='$product_id'");
+                 while($result1=mysqli_fetch_assoc($query2)){
+                     $medicine_name=$result1['medicine_name'];
+                 }
+                echo $medicine_name;?></td>
+                <td>
+                <?php
+                  $query1=mysqli_query($con,"select sum(inn) as total_in , sum(outt) as total_out from stock where product_id='$product_id'");
+                  $sum=0;
+                  while($result1=mysqli_fetch_assoc($query1)){
+                      $inn=$result1['total_in'];
+                      $oout=$result1['total_out'];
+                      $sum=$inn-$oout;
+                    }
+                    echo $sum;
+                ?>
+                </td>
+                </tr>
+                <?php
+            }
+        ?>
 
 </table>
+
+<?php
+}else if( $med!='a'){
+    ?>
+        <table border="2">
+            <tr>
+                <td>sl</td>
+                <td>date</td>
+                <td>in</td>
+                <td>out</td>
+                <td>stock</td>
+            </tr>
+            <?php
+            $f=0;
+            $query2=mysqli_query($con,"select * from stock where product_id='$med'");
+            $total=0;
+            while($result2=mysqli_fetch_assoc($query2)){
+                $sll=$result2['sl'];
+                $date=$result2['date'];
+                $inn=$result2['inn'];
+                $outt=$result2['outt'];
+                $total=($total+$inn)-$outt;
+                $f++;
+                ?>
+                 <tr>
+                <td><?php echo $f;?></td>
+                <td><?php echo $date;?></td>
+                <td><?php echo $inn;?></td>
+                <td><?php echo $outt;?></td>
+                <td><?php echo $total;?></td>
+            </tr>
+                <?php 
+            }
+                ?>
+        </table>
 
 <?php
 }

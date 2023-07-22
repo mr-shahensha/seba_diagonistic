@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
 while($result=mysqli_fetch_assoc($query2)){
         $medicine_idd=$result['medicine_id'];
         $quanityy=$result['quantity'];
-        $query3=mysqli_query($con,"INSERT INTO `stock` (`sl`,`product_id`, `in`, `out`, `purchase_id`, `sale_id`) VALUES (NULL,'$medicine_idd', '', '$quanityy', '', '$billno');");
+        $query3=mysqli_query($con,"INSERT INTO `stock` (`sl`,`product_id`, `inn`, `outt`, `purchase_id`, `sale_id`) VALUES (NULL,'$medicine_idd', '', '$quanityy', '', '$billno');");
 }
 
 
