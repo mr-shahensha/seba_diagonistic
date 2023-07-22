@@ -1,14 +1,14 @@
 <?php
 include("connection.php");
-
 $med=$_REQUEST['med'];
+
 if( $med=='a'){ 
 ?>
 <table border="2">
     <tr>
-        <td>sl</td>
-        <td>product</td>
-        <td>stock</td>
+        <td><b>sl</b> </td>
+        <td><b>product</b> </td>
+        <td><b>stock</b> </td>
     </tr>
         <?php
         $f=0;
@@ -51,11 +51,11 @@ if( $med=='a'){
     ?>
         <table border="2">
             <tr>
-                <td>sl</td>
-                <td>date</td>
-                <td>in</td>
-                <td>out</td>
-                <td>stock</td>
+                <td><b>sl</b> </td>
+                <td><b>date</b> </td>
+                <td><b>in</b> </td>
+                <td><b>out</b> </td>
+                <td><b>stock</b> </td>
             </tr>
             <?php
             $f=0;

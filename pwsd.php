@@ -43,6 +43,7 @@ $lvl=$_SESSION['lvl'];
             ?>
         </select></td>
         <td><button type="button" onclick="search()" style="color:blue;">search</button></td>
+        <td><input type="button" value="export data"  onclick="exl_export()"> </td>
     </tr>
     </table>
             <br>
@@ -54,6 +55,20 @@ $lvl=$_SESSION['lvl'];
 </body>
 </html>
 <script>
+    function exl_export(){
+        var date1=document.getElementById('date1').value;
+        var date2=document.getElementById('date2').value;
+        var medicine=document.getElementById('medicine').value;
+        if(date1==""){
+            alert("select first date")
+            return false;
+        }
+        if(date2==""){
+            alert("select second date")
+            return false;
+        }
+        document.location='export_pwsd.php?date1='+date1+'&date2='+date2+'&medicine='+medicine;
+    }
     function search(){
         var date1=document.getElementById('date1').value;
         var date2=document.getElementById('date2').value;

@@ -5,8 +5,8 @@ $in=0;
 $out=0;
 $query=mysqli_query($con,"SELECT * FROM `stock`  where product_id='$medid';");
 while($result=mysqli_fetch_assoc($query)){
-    $in=$in+$result['in'];
-    $out=$out+$result['out'];
+    $in=$in+$result['inn'];
+    $out=$out+$result['outt'];
 }
 $sum=$in-$out;
 if($sum<=0){
