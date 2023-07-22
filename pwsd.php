@@ -12,12 +12,13 @@ $lvl=$_SESSION['lvl'];
 </head>
 <body>
     <h1>product wise sale details</h1><br>
-<table border="2">
+    <table border="2" style="width:900px;height:60px; ">
         <tr>
         <td><a href="index.php">home</a></td>
         <td><a href="dwsd.php">day wise sale detils</a></td>
         <td><a href="pwsd.php">product wise sale detils</a></td>
         <td><a href="stock.php">stock</a></td>
+        <td><a href="check_stock.php">check stock</a></td>
         <td><a href="medicine_master.php">medicine master</a></td>
         <td><a href="medicine.php">medicine</a></td>
         <td><a href="purchase.php"> purchase</a></td>
@@ -82,8 +83,6 @@ $lvl=$_SESSION['lvl'];
             return false;
         }
         $('#search').load('getpwsd.php?date1='+date1+'&date2='+date2+'&medicine='+medicine).fadeIn('fast');
-
-
     }
 </script>
 </body>

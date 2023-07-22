@@ -64,7 +64,7 @@ $query2=mysqli_query($con,"INSERT INTO `purchase_details` (`sl`, `purchase_id`, 
         }
 ?>
 <tr>
-    <td>total : <?php echo $sum;?></td>
+    <td colspan="5">total : <?php echo $sum;?></td>
 </tr>
 </table>
 <input type="submit" value="submit" name="submit" style="width:300px;background-color:blue;color:white;">
