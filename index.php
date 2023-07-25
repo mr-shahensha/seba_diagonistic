@@ -31,6 +31,7 @@ $lvl=$_SESSION['lvl'];
         <td><a href="medicine_master.php">medicine master</a></td>
         <td><a href="medicine.php">medicine</a></td>
         <td><a href="purchase.php"> purchase</a></td>
+        <td><a href="details.php">details</a></td>
         <td><a href="logout.php">logout</a></td>
         </tr>
    </table>
